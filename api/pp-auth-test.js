@@ -7,11 +7,10 @@ export default async function handler(req, res) {
     if (!token) {
       return res.status(500).json({
         ok: false,
-        error: "Token da Perfect Pay não encontrado. Configure nas variáveis da Vercel."
+        error: "Token da Perfect Pay não encontrado nas variáveis de ambiente."
       });
     }
 
-    // Faz uma requisição simples só pra testar se o token está ok
     const response = await axios.get(
       "https://app.perfectpay.com.br/api/v1/user",
       {
@@ -28,11 +27,13 @@ export default async function handler(req, res) {
       data: response.data,
     });
 
-  } catch (err) {
-    return res.status(400).json({
+  } catch (error) {
+    console.error("Erro na função:", error);
+
+    return res.status(500).json({
       ok: false,
-      error: "Erro ao validar token",
-      detail: err.response?.data || err.message,
+      error: "Erro ao comunicar com a API da Perfect Pay",
+      detail: error?.response?.data || error.message,
     });
   }
 }
