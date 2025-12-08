@@ -1,8 +1,5 @@
 {
   "name": "perfectpay-api",
   "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "axios": "latest"
-  }
+  "private": true
 }
