@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
 
     return res.status(200).json({
       ok: true,
-      message: "Teste simples da API",
+      message: "Teste simples da API (sem axios)",
       hasToken: !!token,
       tokenLength: token ? token.length : 0,
     })
