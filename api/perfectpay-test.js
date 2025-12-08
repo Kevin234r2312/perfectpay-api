@@ -1,6 +1,14 @@
-module.exports = (req, res) => {
-  res.status(200).json({
-    ok: true,
-    message: "API Perfect Pay - teste funcionando 🚀",
-  })
+export default function handler(request) {
+  return new Response(
+    JSON.stringify({
+      ok: true,
+      message: "API Perfect Pay - Teste OK (Node.js 20)",
+    }),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
 }
