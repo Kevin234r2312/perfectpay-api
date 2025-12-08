@@ -1,39 +1,20 @@
-import axios from "axios";
-
 export default async function handler(req, res) {
   try {
-    const token = process.env.PERFECTPAY_PERSONAL_TOKEN;
-
-    if (!token) {
-      return res.status(500).json({
-        ok: false,
-        error: "Token da Perfect Pay não encontrado nas variáveis de ambiente."
-      });
-    }
-
-    const response = await axios.get(
-      "https://app.perfectpay.com.br/api/v1/user",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/json",
-        },
-      }
-    );
+    const token = process.env.PERFECTPAY_PERSONAL_TOKEN || null;
 
     return res.status(200).json({
       ok: true,
-      message: "Token válido! Conexão com Perfect Pay funcionando.",
-      data: response.data,
+      message: "Teste simples da API",
+      hasToken: !!token,
+      tokenLength: token ? token.length : 0
     });
-
   } catch (error) {
-    console.error("Erro na função:", error);
+    console.error("Erro na função pp-auth-test:", error);
 
     return res.status(500).json({
       ok: false,
-      error: "Erro ao comunicar com a API da Perfect Pay",
-      detail: error?.response?.data || error.message,
+      error: "Erro inesperado na função",
+      detail: error.message,
     });
   }
 }
