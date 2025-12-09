@@ -9,13 +9,12 @@ export default async function handler(req, res) {
       })
     }
 
-    // Aqui estamos dizendo: traga vendas APROVADAS a partir de 2024-01-01
+    // Período fixo só pra teste: de 2024-01-01 até hoje
     const payload = {
       page: 1,
-      start_date_sale: "2024-01-01", // data inicial (ajusta depois se quiser)
-      // você também pode mandar end_date_sale se quiser limitar
-      // end_date_sale: "2024-12-31",
-      // sale_status_enum: 1, // se quiser filtrar por status (depende da doc)
+      start_date_sale: "2024-01-01",
+      end_date_sale: "2030-12-31", // bem largo só pra não faltar nada
+      // sale_status_enum: 1, // se quiser filtrar depois
     }
 
     const response = await fetch(
