@@ -9,11 +9,13 @@ export default async function handler(req, res) {
       })
     }
 
-    // Filtros básicos de teste — depois a gente melhora
+    // Aqui estamos dizendo: traga vendas APROVADAS a partir de 2024-01-01
     const payload = {
       page: 1,
-      // Exemplo de como filtrar por status:
-      // sale_status_enum: 1, // 1 – aprovado, 2 – aguardando, etc. (depende da doc)
+      start_date_sale: "2024-01-01", // data inicial (ajusta depois se quiser)
+      // você também pode mandar end_date_sale se quiser limitar
+      // end_date_sale: "2024-12-31",
+      // sale_status_enum: 1, // se quiser filtrar por status (depende da doc)
     }
 
     const response = await fetch(
